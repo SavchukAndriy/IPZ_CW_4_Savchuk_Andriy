@@ -173,5 +173,10 @@ fun PreviewTaskDetailScreen() {
 }
 
 fun getDummyTasks(): List<Task> {
-    return listOf()
+    return listOf(
+        Task("Task 1", TaskStatus.ACTIVE, "Description 1", "2024-03-14"),
+        Task("Task 2", TaskStatus.DONE, "Description 2", "2024-03-15"),
+        Task("Task 3", TaskStatus.ACTIVE, "Description 3", "2024-03-16"),
+        Task("Task 4", TaskStatus.DONE, "Description 4", "2024-03-17"),
+    )
 }
