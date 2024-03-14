@@ -1,6 +1,7 @@
 package com.example.ipz_cw_4_savchuk_andriy
 
 import android.annotation.SuppressLint
+import androidx.compose.ui.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +17,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.ipz_cw_4_savchuk_andriy.ui.theme.IPZ_CW_4_Savchuk_AndriyTheme
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,4 +66,8 @@ fun TaskListScreen(tasks: List<Task>, onItemClick: (Task) -> Unit) {
 
 @Composable
 fun TaskListItem(task: Task, onItemClick: (Task) -> Unit) {
+    val backgroundColor = when (task.status) {
+        TaskStatus.ACTIVE -> Color.LightGray
+        TaskStatus.DONE -> Color.Gray
     }
+}
