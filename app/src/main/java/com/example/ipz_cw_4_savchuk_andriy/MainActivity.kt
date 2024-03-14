@@ -28,8 +28,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material3.IconButton
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 
-
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,4 +122,31 @@ fun TaskDetailScreen(task: Task, onDoneClick: () -> Unit, onBackClick: () -> Uni
             }
         }
     )
+}
+
+
+
+@Composable
+fun TaskApp() {
+    var tasks by remember { mutableStateOf(getDummyTasks()) }
+    var selectedTask by remember { mutableStateOf<Task?>(null) }
+
+    when {
+        selectedTask != null -> {
+            TaskDetailScreen(
+                task = selectedTask!!,
+                onDoneClick = {
+                    tasks = tasks.map {
+                        if (it == selectedTask) {
+                            it.copy(status = TaskStatus.DONE)
+                        } else {
+                            it
+                        }
+                    }
+                    selectedTask = null
+                },
+                onBackClick = { selectedTask = null }
+            )
+        }
+    }
 }
