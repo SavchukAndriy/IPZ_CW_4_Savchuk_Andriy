@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -48,5 +50,15 @@ fun TaskListScreen(tasks: List<Task>, onItemClick: (Task) -> Unit) {
                 title = { Text(text = "Список завдань") }
             )
         }
-    )
+    ) {
+        LazyColumn {
+            items(tasks) { task ->
+                TaskListItem(task = task, onItemClick = onItemClick)
+            }
+        }
+    }
 }
+
+@Composable
+fun TaskListItem(task: Task, onItemClick: (Task) -> Unit) {
+    }
