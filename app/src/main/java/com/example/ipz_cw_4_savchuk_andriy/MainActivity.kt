@@ -29,3 +29,5 @@ class MainActivity : ComponentActivity() {
 enum class TaskStatus {
     ACTIVE, DONE
 }
+
+data class Task(val title: String, val status: TaskStatus, val description: String, val date: String)
