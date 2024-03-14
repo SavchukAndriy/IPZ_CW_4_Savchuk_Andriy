@@ -148,5 +148,11 @@ fun TaskApp() {
                 onBackClick = { selectedTask = null }
             )
         }
+        else -> {
+            TaskListScreen(
+                tasks = tasks,
+                onItemClick = { task -> selectedTask = task }
+            )
+        }
     }
 }
