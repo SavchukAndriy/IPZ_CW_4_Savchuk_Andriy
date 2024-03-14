@@ -22,6 +22,11 @@ import com.example.ipz_cw_4_savchuk_andriy.ui.theme.IPZ_CW_4_Savchuk_AndriyTheme
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material3.IconButton
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 
 
 
@@ -85,4 +90,38 @@ fun TaskListItem(task: Task, onItemClick: (Task) -> Unit) {
             modifier = Modifier.padding(16.dp)
         )
     }
+}
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TaskDetailScreen(task: Task, onDoneClick: () -> Unit, onBackClick: () -> Unit) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = task.title) },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                }
+            )
+        },
+        content = {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(text = "Опис: ${task.description}")
+                Text(text = "Дата: ${task.date}")
+                if (task.status == TaskStatus.ACTIVE) {
+                    Button(onClick = onDoneClick) {
+                        Text(text = "Done")
+                    }
+                }
+            }
+        }
+    )
 }
